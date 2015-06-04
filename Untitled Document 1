@@ -1,0 +1,277 @@
+{"user":{ "profile":{"first_name": "rahul", "last_name": "gavhane", "email": "rahul@gmail.com", "age": "22", "gender": "male", "profile_pic_url": "www.google.com/rah.jpg", "city": "pune"}}}
+
+
+{"user":{ "profile":{"first_name": "rahul", "last_name": "gavhane", "email": "rahul@gmail.com", "age": "22", "gender": "male", "profile_pic_url": "www.google.com/rah.jpg", "city": "pune"}}}
+
+
+{"poll":{"poll_description": "gjagknk", "poll_url": "kjdsnvn", "poll_type": "img","poll_expires_at": "", "options": [{"option1_description": "wscf", "option1_type":"tsh", "option1_url": ""}, {"option2_description":"ddf", "option2_type": "fjk", "option2_url": "fnfnv"}] }}
+
+
+{"registration_id": "baskbckhbakcbk", "phone_number": "9089786756", "device_type": "dncncnn", "os_type": "kcbkbbdn"}
+
+{"name":"fun forevr","description":"lets fun with ruby","profile_pic_url":"http://localhost/polls/smpm.gif","is_permanent":"true"}
+
+heroku run console
+
+{"group":{"name":"funmasti","description":"lets fun with life","profile_pic_url":"http://localhost/polls/smpm.gif","is_permanent":"true","phone_numbers":["8805819297"]}}
+
+{"user":{"registration_id": "baopujhskbckhbakcbk", "phone_number": "9892437450", "device_type": "irisx1", "os_type": "Android","country_code":"IN"}}
+
+{"group":{"add_members":["7350006446","9860666535"], "delete_members": ["7788990099"]}}
+
+{"verification_code": 6893}
+
+{"group":{"name":"amol","description":"lets fun with life","profile_pic_url":"http://localhost/polls/smpm.gif","users_attributes" :{
+    "0" : { "phone_number" : "9762437458" },
+    "1" : { "phone_number" : "9822743511" }}}}
+
+git branch amol
+git push origin master:amol
+
+{"user":{ "profile":{"first_name": "rahul", "last_name": "gavhane", "email": "rahul@gmail.com", "age": "22", "gender": "male", "profile_pic_url": "http://www.google.com/rah.jpg", "city": "pune"}}}
+
+{ "profile":{"first_name": "amol", "last_name": "gavhane", "email": "rahul111@gmail.com", "age": "22", "gender": "Male", "profile_pic_url": "http://www.google.com/rah.jpg", "city": "pune"}}
+
+
+custom validation for verification_code
+
+
+add error for group name size limit---completed
+
+	remove update_members and add method for add/delete in update action
+	update_members method change using nested atrributes..
+	remove add_member code  from update_group
+
+
+JSON.parse(response.body) only one time create and use before block----------------completed
+dont use const in factory---
+	rename profile to create profile --- write profile action into profile controller------------completed
+in rspec check only error is present or not dont check msgs---------completed
+usr_ids in json format------------completed
+change_name-- get_members-----------complete
+remove authenticity token-----------------complete
+rename is_group_exist to get_group-----------------complete
+remove comments which are not require-------------complete
+remove space----------------completed
+status code for is_verified change it-----------completed........(unauthorized-401)---complete
+remove haercoded values from specs like in gender validation in user model user GENDER_VALUE[:male]-------complete
+
+if already registerd then give error response msg as ---------------complete
+
+add before filter for verified user-------------
+add message for enter verification code--------------------
+group create validations false...............
+
+simplecov------------completed
+aasm---------------completed
+
+random---poll response
+-------------------
+ids = User.pluck(:id).shuffle[0..4]
+User.where(id: ids)
+---------------------------------------------
+initial--type nil, option-nil
+
+if poll tie...then type --random/repoll/tie-braker
+for random only choose from tied options...
+tie-braker----all options send to user
+
+in poll model new mthod for latest result
+
+-------- in poll write one action and check type.....
+
+check type if randomm then set option and send it to sender..
+type --tie braker then check user is set if already set then send response as option else send group members list...
+type --repoll...then reset the currnt_result and send , add state for it reinitialize
+
+
+grep "register\!" ./spec/ -r
+
+else
+  35       if params[:type] == 'tie_braker'
+  36         if @poll.results.last.user
+  37           option = @poll.current_result.option
+  38           render_response(data: { option: {description: option.description, type: option.type, url: option.url}})
+  39         else
+  40           render_response(data: { group: {members: @poll.group.users.pluck(:phone_number)}})
+  41         end
+  42       else
+  43         if params[:type] == 'repoll'
+  44           option = @poll.current_result.option
+  45           render_response(data: { option: {description: option.description, type: option.type, url: option.url }})
+  46         end
+  47       end
+
+
+for creating poll recievers phone_number and name are required
+also for contact_list
+
+spec helper for register!...
+
++++new api's
+1--users/user_id/polls/poll_id/tied_result---done
+2--users/user_id/resend_verification---done
+3--users/user_id/polls/poll_without_group--------add condition in create poll...no need to add new api for this----done
+4--users/user_id/polls/add_receivers
+
+---poll expires at when poll create without group
+
+{
+   "poll" : {
+                   "description" : "poll demo with group",
+                   "type" : "Text",
+                   "expires_at" : "2015-04-23T18:06:25+05:30",
+                   "options_attributes" : {
+                                                         "0" : { "description" : "option demo", "type" : "Text" },
+                                                         "1" : { "type" : "Text", "description" : "abce" }
+                   },
+                 "group": {
+                  "users_attributes" : {
+                                                     "0" : { "phone_number" : "9762437458" },
+                                                     "1" : { "phone_number" : "9822743511" },
+                                                     "2" : { "phone_number" : "9762437458" },
+                                                     "3" : { "phone_number" : "9822743510" }
+                  }
+   }
+}}
+---gems--
+Active-model-serializers------ as_json will conevrt gud foramat
+responders----- respond_to
+party-faul----- automatic add isssues or reopen closed issue add comments for issues
+rails-api------ only for api app not generate views helpers..and lightweight application is created
+sdoc ------ for documentation
+versionist---versioning the api....http header or path or requ paramsters
+aasm---states
+jbuilder---- design structure for json-------------------
+
+
+		--------------14/04/2015----------------TIE_BRAKER-------
+		
+	1)tie_braker-------if poll complete and tie but after complete poll temp group is deleted, then how to send group members list
+	2)tied_result-----parameter for resolve_tie----type and user
+	3)response is also diff.
+	4)after set result as type and user -- aasm_state also change from completed to activated
+	after reactivated it needs to set expire time again for poll...:
+-----------
+15/04/2015------------add url upload action------------------
+if text----then activate at creation time
+if not text---yhen initiated
+after updating url====poll is activated but not set results
+if poll is intiated and we request for activate its false because gaurd=> url?
+
+GOOGLE_DOC---------------https://docs.google.com/document/d/1o-KU_gpqieui9nBRrlX4nZeZsyeh_7XdHDvCxspM4Sw/edit#heading=h.n4a8ecfo59da
+
+-----------complex---------------------------------------------------------
+response_cotroller
+users_controll
+polls_cotroll
+poll model
+
+------------------------prime number------------------------------------------------------------
+6x+1 ----------- any value for x is prime number
+1,2,3,4,5,6,7,8,9,10---------------start from 2 and then remove multiple of 2 then take next num i.e 3 and remove multiple of 3 continue
+
+---------------------------------------------------------------------------------------
+
+CSV file------comma seperated values
+news latter
+unique emails-------store
+if new email id then it doent have name...
+how to get name of receivers
+
+-----------------------------------extract-emails--------------------------------------
+used gem gmailgem/gmail for acceccsing mails.-------require 'gmail',  pass the username and password to Gmail.connect method
+create emails.csv file and stored sent email_ids into it. 
+error if gmails creditentials--`get_tagged_response': Unknown command r6mb18213703ioi (Net::IMAP::BadResponseError)
+error mail---Google Account: sign-in attempt blocked
+if joshsoftware creditentials then login success and can access mails-----solved
+----change account setting to enable less secure app
+
+p email.header_fields.select{ |f| f.name == "To" }.first
+  53 #file << email.message.to
+  54 #file << email.message.cc
+--------------------------only gmails can accss and exception not throw properly-------------------------
+simplecov run but not check actual code
+
+=begin    header =  ["Email", "Name"]
+  39     File.open('email.csv', 'w') do |file|
+  40       file.puts header.to_csv
+  41       @recipients.each do |arr|
+  42         file.puts header.map {|h| arr[h]}.to_csv
+  43       end
+  44       file.close
+  45 =end
+
+before(:each) do
+   8     allow(Gmail).to receive(:connect!).and_return(@gmail = double('Gmail'))
+   9     @email = Email.new('amolishere7', 'amol@12345')
+  10     allow(@gmail).to receive(:label).with('Sent').and_return(sent_mail = double('Gmail::Mailbox'))
+  11 
+  12     a = double(Gmail::Message)
+  13     b = double(Gmail::Message)
+  14     allow(sent_mail).to receive(:emails).and_return([a, b])
+  15     allow(a).to receive(:message).and_return(message1 = double(Mail::Message))
+  16     allow(message1).to receive(:to).and_return(to1 = double(Mail::AddressContainer))
+  17     allow(message1).to receive(:cc).and_return(cc1 = double(Mail::AddressContainer))
+  18     allow(b).to receive(:message).and_return(message2 = double(Mail::Message))
+  19     allow(message2).to receive(:to).and_return(to2 = double(Mail::AddressContainer))
+  20     allow(message2).to receive(:cc).and_return(cc2 = double(Mail::AddressContainer))
+  21 
+  22     mail1 = double(Net::IMAP::Address)
+  23     mail2 = double(Net::IMAP::Address)
+  24     mail5 = double(Net::IMAP::Address)
+  25     allow(a).to receive(:[]).with(:to).and_return([mail1, mail2])
+  26     allow(a).to receive(:[]).with(:cc).and_return([mail5])
+  27     allow(mail1).to receive(:mailbox).and_return(mail_id1 = 'amolishere7')
+  28     allow(mail2).to receive(:mailbox).and_return(mail_id2 = 'vijayt14')
+  29     allow(mail1).to receive(:host).and_return(host1 = 'gmail.com')
+  30     allow(mail2).to receive(:host).and_return(host2 = 'joshsoftware.com')
+  31     allow(mail1).to receive(:first).and_return(name1 = 'Amol Udage')
+  32     allow(mail2).to receive(:first).and_return(name2 = '')
+  33     allow(mail5).to receive(:mailbox).and_return(mail_id5 = 'amolishere7')
+  34     allow(mail5).to receive(:host).and_return(host5 = 'gmail.com')
+  35     allow(mail5).to receive(:first).and_return(name5 = 'Amol Udage')
+  36 
+  37     mail3 = double(Net::IMAP::Address)
+  38     mail4 = double(Net::IMAP::Address)
+  39     mail6 = double(Net::IMAP::Address)
+  40     allow(b).to receive(:[]).with(:to).and_return([mail3, mail4])
+  41     allow(b).to receive(:[]).with(:cc).and_return([mail4])
+  42     allow(mail3).to receive(:mailbox).and_return(mail_id3 = 'viky56')
+  43     allow(mail4).to receive(:mailbox).and_return(mail_id4 = 'vijay14')
+  44     allow(mail3).to receive(:host).and_return(host3 = 'gmail.com')
+  45     allow(mail4).to receive(:host).and_return(host4 = 'joshsoftware.com')
+  46     allow(mail3).to receive(:first).and_return(name3 = 'Viky ')
+  47     allow(mail4).to receive(:first).and_return(name4 = 'Akshay b')
+  48     allow(mail6).to receive(:mailbox).and_return(mail_id6 = 'amolishere7')
+  49     allow(mail6).to receive(:host).and_return(host6 = 'gmail.com')
+  50     allow(mail6).to receive(:first).and_return(name6 = 'Amol Udage')
+  51     allow(@gmail).to receive(:logout)
+  52   end
+
+
+#skip gets and puts used for taking inputs
+   8     allow_any_instance_of(Email).to receive(:gets).and_return('amolishere7')
+   9     allow_any_instance_of(Email).to receive(:puts).with('Enter user name:')
+  10     allow_any_instance_of(Email).to receive(:puts).with('Enter password:')
+
+
+
+sent emails .each------------------ batches------- gmail/lib/gmail/mailbox.rb--method for it
+progress bar
+recipients array
+control +c
+check_recipients_present
+Gemfile
+dump object into file
+interrupt handle for control+c
+load csv file as hash--then 
+--------------------------------------------
+amolishere7---Gcm project
+name- GcmRuby
+Project ID: gcmruby
+Project Number: 526089957186
+API key- AIzaSyAfxGeSGt0bi3rCUDixLTmZ0tjpMD04oQ4
+-----------------------
+proj no-- 284872346977
+api -- AIzaSyBErxa1n1Crp1f5CLIF0ESQfNtZudUbLTg
